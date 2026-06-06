@@ -1,18 +1,19 @@
 <?php
-/* Conexión para InfinityFree */
-$host = "sql107.infinityfree.com";
-$usuario = "if0_42059142";
-$password = "Consultorio2026";
-$bd = "if0_42059142_consultorio_medico";
+declare(strict_types=1);
 
-$conn = new mysqli($host, $usuario, $password, $bd);
+const APP_NAME = 'SIGADEA';
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+// Datos de MySQL en Railway
+const DB_HOST = 'zephyr.proxy.rlwy.net';
+const DB_NAME = 'clinica';
+const DB_USER = 'root';
+const DB_PASS = 'dGkSwdqkiqDQkqDLquJWZANVYVnZVIjZ';
+const DB_PORT = 11902;
+const DB_CHARSET = 'utf8mb4';
 
-$conn->set_charset("utf8mb4");
+define('BASE_PATH', dirname(__DIR__));
+define('UPLOAD_PATH', BASE_PATH . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'documents');
+define('BACKUP_PATH', BASE_PATH . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'backups');
+define('REPORT_PATH', BASE_PATH . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'reports');
 
-/* Compatibilidad por si algún archivo usa $conexion */
-$conexion = $conn;
-?>
+date_default_timezone_set('America/Mexico_City');
