@@ -1,0 +1,356 @@
+/* ============================================================
+   CONSULTORIO VALERIO — Sistema de Gestión y Atención Médica
+   Hoja de estilos maestra (rediseño visual — clínica moderna)
+   NOTA: Solo afecta apariencia. No altera ninguna lógica.
+   ============================================================ */
+
+/* ===== TIPOGRAFÍAS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
+
+/* ===== VARIABLES DE COLOR (PALETA MÉDICA) ===== */
+:root{
+    --primario:        #0EA5E9;   /* Azul médico */
+    --primario-700:    #0284C7;   /* Azul médico (hover) */
+    --primario-800:    #0369A1;   /* Azul médico (activo) */
+    --primario-soft:   #E0F2FE;   /* Azul muy claro (fondos suaves) */
+
+    --oscuro:          #0F172A;   /* Azul oscuro / slate */
+    --oscuro-700:      #1E293B;
+
+    --blanco:          #FFFFFF;
+    --fondo:           #F8FAFC;   /* Gris muy claro */
+    --borde:           #E2E8F0;   /* Bordes suaves */
+    --texto:           #1E293B;   /* Texto principal */
+    --texto-muted:     #64748B;   /* Texto secundario */
+
+    --exito:           #10B981;   /* Verde médico */
+    --exito-700:       #059669;
+    --alerta:          #F59E0B;   /* Amarillo suave */
+    --error:           #EF4444;   /* Rojo suave */
+    --error-700:       #DC2626;
+
+    --radio:           16px;
+    --radio-sm:        12px;
+    --radio-pill:      999px;
+
+    --sombra-sm:  0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+    --sombra-md:  0 4px 6px rgba(15,23,42,.05), 0 10px 20px rgba(15,23,42,.07);
+    --sombra-lg:  0 10px 25px rgba(15,23,42,.08), 0 20px 48px rgba(15,23,42,.10);
+
+    --trans: .22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== BASE ===== */
+*{ box-sizing:border-box; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color:var(--texto);
+    background-color:var(--fondo);
+    background-image:
+        radial-gradient(1200px 600px at 100% -10%, var(--primario-soft) 0%, transparent 55%),
+        radial-gradient(900px 500px at -10% 110%, #ECFDF5 0%, transparent 50%);
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+}
+
+img{ max-width:100%; height:auto; }
+
+/* ===== TÍTULOS ===== */
+h1,h2,h3,h4,h5{
+    font-family:'Poppins', 'Segoe UI', sans-serif;
+    color:var(--oscuro);
+    line-height:1.25;
+    margin:0 0 .5em;
+    letter-spacing:-.01em;
+}
+h1{ font-size:clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem); font-weight:700; color:var(--oscuro); }
+h2{ font-size:clamp(1.25rem, 1rem + 1vw, 1.6rem); font-weight:700; }
+h3{ font-size:clamp(1.05rem, .95rem + .6vw, 1.25rem); font-weight:600; color:var(--oscuro-700); }
+
+p{ margin:0 0 .65rem; }
+a{ color:var(--primario-700); }
+hr{ border:0; border-top:1px solid var(--borde); margin:1.1rem 0; }
+
+/* ===== ENCABEZADO DE PÁGINA (título suelto fuera de navbar) ===== */
+body > h1, body > h2{
+    width:90%;
+    max-width:1200px;
+    margin:28px auto 4px;
+}
+body > p{
+    width:90%;
+    max-width:1200px;
+    margin:0 auto 18px;
+    color:var(--texto-muted);
+}
+
+/* ===== CONTENEDOR ===== */
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:26px auto;
+    padding:0;
+}
+
+/* ===== NAVBAR / HEADER MÉDICO ===== */
+.navbar{
+    background:linear-gradient(100deg, var(--oscuro) 0%, #102a43 55%, var(--primario-800) 140%);
+    color:var(--blanco);
+    padding:0;
+    box-shadow:var(--sombra-md);
+    position:relative;
+}
+.navbar::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:linear-gradient(90deg, var(--primario), var(--exito));
+}
+.navbar .container{
+    margin:0 auto;
+    padding:18px 0;
+    display:flex; align-items:center; gap:12px;
+}
+.navbar h2{
+    margin:0;
+    color:var(--blanco);
+    font-size:1.35rem;
+    display:flex; align-items:center; gap:10px;
+}
+.navbar h2::before{
+    content:"\F47F"; /* bootstrap-icon: heart-pulse */
+    font-family:"bootstrap-icons";
+    font-size:1.3rem;
+    color:#7dd3fc;
+}
+
+/* ===== TARJETAS ===== */
+.card{
+    background:var(--blanco);
+    padding:28px;
+    border:1px solid var(--borde);
+    border-radius:var(--radio);
+    box-shadow:var(--sombra-md);
+    margin-bottom:22px;
+    transition:box-shadow var(--trans), transform var(--trans);
+}
+.card-body{ padding:6px; }
+
+/* tarjeta de login destacada */
+.card.shadow{ box-shadow:var(--sombra-lg); }
+
+/* ===== FORMULARIOS ===== */
+label, .form-label{
+    display:block;
+    font-weight:600;
+    font-size:.92rem;
+    color:var(--oscuro-700);
+    margin-bottom:6px;
+}
+
+input, select, textarea, .form-control{
+    width:100%;
+    padding:12px 14px;
+    font-family:inherit;
+    font-size:.97rem;
+    color:var(--texto);
+    background:var(--blanco);
+    border:1.5px solid var(--borde);
+    border-radius:var(--radio-sm);
+    margin-top:4px;
+    margin-bottom:16px;
+    box-sizing:border-box;
+    transition:border-color var(--trans), box-shadow var(--trans), background var(--trans);
+}
+input::placeholder, textarea::placeholder, .form-control::placeholder{ color:#94A3B8; }
+
+input:hover, select:hover, textarea:hover, .form-control:hover{
+    border-color:#CBD5E1;
+}
+input:focus, select:focus, textarea:focus, .form-control:focus{
+    outline:none;
+    border-color:var(--primario);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(14,165,233,.15);
+}
+textarea{ resize:vertical; min-height:120px; }
+select{
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    padding-right:40px;
+}
+
+/* ===== BOTONES ===== */
+.btn, button[type="submit"]{
+    --btn-bg: var(--primario);
+    --btn-bg-hover: var(--primario-700);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:var(--btn-bg);
+    color:var(--blanco);
+    border:none;
+    padding:11px 22px;
+    border-radius:var(--radio-pill);
+    font-family:'Inter', sans-serif;
+    font-size:.95rem;
+    font-weight:600;
+    line-height:1.2;
+    cursor:pointer;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(14,165,233,.25);
+    transition:transform var(--trans), box-shadow var(--trans), background var(--trans), filter var(--trans);
+    -webkit-tap-highlight-color:transparent;
+}
+.btn i, button i{ font-size:1.05em; line-height:1; }
+.btn:hover, button[type="submit"]:hover{
+    background:var(--btn-bg-hover);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(14,165,233,.32);
+    color:var(--blanco);
+}
+.btn:active, button[type="submit"]:active{
+    transform:translateY(0);
+    box-shadow:0 3px 8px rgba(14,165,233,.28);
+    filter:brightness(.97);
+}
+.btn:focus-visible{ outline:3px solid rgba(14,165,233,.4); outline-offset:2px; }
+
+/* variantes Bootstrap + propias */
+.btn-primary{ background:var(--primario); box-shadow:0 4px 12px rgba(14,165,233,.25); }
+.btn-primary:hover{ background:var(--primario-700); }
+
+.btn-secondary{
+    background:#fff; color:var(--oscuro-700);
+    border:1.5px solid var(--borde);
+    box-shadow:var(--sombra-sm);
+}
+.btn-secondary:hover{ background:#F1F5F9; color:var(--oscuro); border-color:#CBD5E1; }
+
+.btn-success{ background:var(--exito); box-shadow:0 4px 12px rgba(16,185,129,.25); }
+.btn-success:hover{ background:var(--exito-700); box-shadow:0 8px 20px rgba(16,185,129,.32); }
+
+.btn-danger{ background:var(--error); box-shadow:0 4px 12px rgba(239,68,68,.22); }
+.btn-danger:hover{ background:var(--error-700); box-shadow:0 8px 20px rgba(239,68,68,.3); }
+
+.btn-warning{ background:var(--alerta); color:#fff; }
+.btn-warning:hover{ background:#D97706; color:#fff; }
+
+.w-100{ width:100%; }
+.mt-2{ margin-top:.5rem; } .mt-3{ margin-top:1rem; } .mb-3{ margin-bottom:1rem; } .mb-4{ margin-bottom:1.5rem; }
+.mt-5{ margin-top:3rem; }
+.text-center{ text-align:center; }
+
+/* ===== BARRA DE ACCIONES (botones agrupados) ===== */
+.acciones{
+    display:flex; flex-wrap:wrap; gap:12px;
+    width:92%; max-width:1200px; margin:8px auto 30px;
+}
+
+/* ===== TABLAS ===== */
+.table-responsive{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:var(--radio-sm);
+}
+table, .table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    margin:0;
+    background:#fff;
+    border-radius:var(--radio-sm);
+    overflow:hidden;
+}
+table th, .table th{
+    background:var(--oscuro);
+    color:#fff;
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    text-align:left;
+    padding:14px 16px;
+    white-space:nowrap;
+}
+table td, .table td{
+    padding:13px 16px;
+    border-bottom:1px solid var(--borde);
+    vertical-align:middle;
+    font-size:.95rem;
+    color:var(--texto);
+}
+table tr:last-child td{ border-bottom:none; }
+.table-striped tbody tr:nth-of-type(odd) td,
+table tr:nth-of-type(even) td{ background:#F8FAFC; }
+table tbody tr, .table tbody tr{ transition:background var(--trans); }
+table tr:hover td, .table-hover tbody tr:hover td{ background:var(--primario-soft); }
+
+/* botón compacto dentro de tablas */
+table td .btn{ padding:8px 16px; font-size:.85rem; }
+
+/* ===== EXPEDIENTE / FICHAS DE DATOS ===== */
+.dato{
+    background:#fff;
+    padding:16px 18px;
+    margin-bottom:12px;
+    border:1px solid var(--borde);
+    border-left:4px solid var(--primario);
+    border-radius:var(--radio-sm);
+    box-shadow:var(--sombra-sm);
+}
+
+/* ===== MENÚ ===== */
+.menu{ margin-top:20px; display:flex; flex-wrap:wrap; gap:10px; }
+.menu a{ text-decoration:none; }
+
+/* ===== BADGES SIGNOS / CHIPS (opcional, usable) ===== */
+.chip{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--primario-soft); color:var(--primario-800);
+    padding:5px 12px; border-radius:var(--radio-pill);
+    font-size:.85rem; font-weight:600;
+}
+
+/* ===== ANIMACIÓN DE ENTRADA SUAVE ===== */
+@keyframes fadeUp{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+.card, .navbar, body > h1{ animation:fadeUp .5s ease both; }
+
+/* ===== ROW/COL (compat Bootstrap básico para grids usados) ===== */
+.row{ display:flex; flex-wrap:wrap; margin:0 -8px; }
+.row > [class*="col-"]{ padding:0 8px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+    .container{ width:94%; margin-top:18px; }
+    .card{ padding:20px; }
+    .navbar .container{ padding:16px 0; }
+    .navbar h2{ font-size:1.15rem; }
+    .acciones{ flex-direction:column; }
+    .acciones .btn{ width:100%; }
+    table th, .table th{ font-size:.78rem; padding:12px 12px; }
+    table td, .table td{ padding:11px 12px; }
+    body > h1, body > h2, body > p{ width:94%; }
+}
+
+@media (max-width:425px){
+    h1{ font-size:1.45rem; }
+    .card{ padding:16px; border-radius:14px; }
+    .btn, button[type="submit"]{ padding:11px 18px; }
+    table td .btn{ width:auto; }
+}
